@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Title of the document</title>
+		<style type="text/css">
+			body {
+                background-color: grey;
+            }
+            #text {
+                font-size: 16px;
+                background-color: white;
+                width: 500px;
+                height: 200px;
+                text-align: left;
+            }
+            #send {
+                padding: 20px;
+            }
+            p {
+                color:white;
+            }                               
+		</style>
+	</head>
+	<body>       
+        <div align="center" >
+            <textarea id="text" placeholder="Введите текст для транслитерации"></textarea>
+            <br>
+            <input id="send" type="button" value="Запуск" onclick="translit()">      
+            <p id="result"> Здесь будет результат </p>     
+            <br>
+            <p id="reverseResult"> Здесь будет перевернутый результат </p>
+        </div>
+	</body>
+    
+    <script type='text/javascript'>
+        
+       var letterArray=new Array();
+            letterArray['а']='a'; 
+            letterArray['б']='b'; 
+            letterArray['в']='v'; 
+            letterArray['г']='g'; 
+            letterArray['д']='d'; 
+            letterArray['е']='e'; 
+            letterArray['ё']='yo'; 
+            letterArray['ж']='zh'; 
+            letterArray['з']='z'; 
+            letterArray['и']='i'; 
+            letterArray['й']='j'; 
+            letterArray['к']='k'; 
+            letterArray['л']='l'; 
+            letterArray['м']='m'; 
+            letterArray['н']='n'; 
+            letterArray['о']='o'; 
+            letterArray['п']='p'; 
+            letterArray['р']='r'; 
+            letterArray['с']='s'; 
+            letterArray['т']='t'; 
+            letterArray['у']='u'; 
+            letterArray['ф']='f'; 
+            letterArray['х']='h'; 
+            letterArray['ц']='c'; 
+            letterArray['ч']='ch'; 
+            letterArray['ш']='sh'; 
+            letterArray['щ']='shch'; 
+            letterArray['ъ']='"'; 
+            letterArray['ы']='y'; 
+            letterArray['ь']='\''; 
+            letterArray['э']='e'; 
+            letterArray['ю']='yu'; 
+            letterArray['я']='ya';
+        
+        var translit = function() {
+            
+            var text = document.getElementById('text').value;
+            text = text.toLowerCase();
+            var result = "";
+            
+            for(i = 0; i < text.length; i++) {
+                if(letterArray[text[i]] != undefined){
+                    result += letterArray[text[i]]; 
+                }else {
+                    result += text[i]; 
+                }  
+            }
+        
+            document.getElementById('result').innerHTML=result;
+            
+            var reverseResult = "";
+            for(i = result.length - 1; i >= 0; i--) {
+                reverseResult += result[i];
+            }
+            document.getElementById('reverseResult').innerHTML=reverseResult;
+        }
+    </script>
+
+</html>
